@@ -6,6 +6,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using WebSchoolAPI.Models;
+using WebSchoolAPI.Repositories;
+using WebSchoolAPI.Repositories.CourseRepository;
+using WebSchoolAPI.Repositories.StudentRepository;
+using WebSchoolAPI.Repositories.TeacherRepository;
+using WebSchoolAPI.Repositories.UniversityRepository;
 
 namespace WebSchoolAPI
 {
@@ -24,8 +29,12 @@ namespace WebSchoolAPI
 
             services.AddControllers();
 
-            services.AddDbContext<SchoolDbContext>(o =>
+            services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<ITeacherRepository, TeacherRepository>();
+            services.AddScoped<IUniversityRepository, UniversityRepository>();
 
+            services.AddDbContext<SchoolDbContext>(o =>
            o.UseSqlServer("Server=DESKTOP-JITMAHC;Database=WebSchoolAPI;Integrated Security=true;"));
 
             services.AddSwaggerGen(c =>

@@ -1,4 +1,6 @@
-﻿namespace WebSchoolAPI.Models
+﻿using System.Collections.Generic;
+
+namespace WebSchoolAPI.Models
 {
     public class University
     {
@@ -7,5 +9,10 @@
         public string Name { get; set; }
         public int Capacity { get; set; }
         public string Description { get; set; }
+
+        
+        //Navigational properties:
+        public ICollection<Student> Students { get; set; }
+        public ICollection<Course> Courses { get; set; }
     }
 }
