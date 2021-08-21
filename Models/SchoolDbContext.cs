@@ -11,7 +11,7 @@ namespace WebSchoolAPI.Models
         public SchoolDbContext(DbContextOptions<SchoolDbContext> options)
             : base(options)
         {
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
 
         public DbSet<Student> Students { get; set; }
