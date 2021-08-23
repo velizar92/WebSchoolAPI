@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,29 +9,43 @@ namespace WebSchoolAPI.Repositories.UniversityRepository
 {
     public class UniversityRepository : IUniversityRepository
     {
-        public Task<University> Create(University university)
+        private readonly SchoolDbContext _context;
+
+        public UniversityRepository(SchoolDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task Delete(int id)
+
+        public async Task<University> Create(University university)
         {
-            throw new NotImplementedException();
+            _context.Universities.Add(university);
+            await _context.SaveChangesAsync();
+
+            return university;
         }
 
-        public Task<University> Get(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var universityToDelete = await _context.Universities.FindAsync(id);
+            _context.Universities.Remove(universityToDelete);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<University>> GetAll()
+        public async Task<IEnumerable<University>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _context.Universities.ToListAsync();
         }
 
-        public Task Update(University university)
+        public async Task<University> Get(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Universities.FindAsync(id);
+        }
+
+        public async Task Update(University university)
+        {
+            _context.Entry(university).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
     }
 }
