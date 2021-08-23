@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,29 +9,43 @@ namespace WebSchoolAPI.Repositories.TeacherRepository
 {
     public class TeacherRepository : ITeacherRepository
     {
-        public Task<Teacher> Create(Teacher teacher)
+        private readonly SchoolDbContext _context;
+
+        public TeacherRepository(SchoolDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task Delete(int id)
+
+        public async Task<Teacher> Create(Teacher teacher)
         {
-            throw new NotImplementedException();
+            _context.Teachers.Add(teacher);
+            await _context.SaveChangesAsync();
+
+            return teacher;
         }
 
-        public Task<Teacher> Get(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var teacherToDelete = await _context.Teachers.FindAsync(id);
+            _context.Teachers.Remove(teacherToDelete);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<Teacher>> GetAll()
+        public async Task<IEnumerable<Teacher>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _context.Teachers.ToListAsync();
         }
 
-        public Task Update(Teacher teacher)
+        public async Task<Teacher> Get(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Teachers.FindAsync(id);
+        }
+
+        public async Task Update(Teacher teacher)
+        {
+            _context.Entry(teacher).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,29 +10,43 @@ namespace WebSchoolAPI.Repositories.CourseRepository
 {
     public class CourseRepository : ICourseRepository
     {
-        public Task<Course> Create(Course course)
+        private readonly SchoolDbContext _context;
+
+        public CourseRepository(SchoolDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task Delete(int id)
+
+        public async Task<Course> Create(Course course)
         {
-            throw new NotImplementedException();
+            _context.Courses.Add(course);
+            await _context.SaveChangesAsync();
+
+            return course;
         }
 
-        public Task<Course> Get(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var courseToDelete = await _context.Courses.FindAsync(id);
+            _context.Courses.Remove(courseToDelete);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<Course>> GetAll()
+        public async Task<IEnumerable<Course>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _context.Courses.ToListAsync();
         }
 
-        public Task Update(Course course)
+        public async Task<Course> Get(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Courses.FindAsync(id);
+        }
+
+        public async Task Update(Course course)
+        {
+            _context.Entry(course).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
     }
 }
