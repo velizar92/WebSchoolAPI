@@ -34,8 +34,11 @@ namespace WebSchoolAPI
             services.AddScoped<ITeacherRepository, TeacherRepository>();
             services.AddScoped<IUniversityRepository, UniversityRepository>();
 
+            //services.AddDbContext<SchoolDbContext>(o =>
+            //o.UseSqlServer("Server=DESKTOP-JITMAHC;Database=WebSchoolAPI;Integrated Security=true;"));
+
             services.AddDbContext<SchoolDbContext>(o =>
-           o.UseSqlServer("Server=DESKTOP-JITMAHC;Database=WebSchoolAPI;Integrated Security=true;"));
+            o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddSwaggerGen(c =>
             {
