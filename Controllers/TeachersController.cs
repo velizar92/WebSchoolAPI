@@ -42,7 +42,7 @@ namespace WebSchoolAPI.Controllers
             return CreatedAtAction(nameof(GetTeachers), new { id = teacher.Id }, newTeacher);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         [Route("update/{id}")]
         public async Task<ActionResult> PutTeacher(int id, [FromBody] Teacher teacher)
         {

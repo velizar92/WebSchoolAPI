@@ -40,10 +40,10 @@ namespace WebSchoolAPI
             services.AddDbContext<SchoolDbContext>(o =>
             o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebSchoolAPI", Version = "v1" });
-            });
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebSchoolAPI", Version = "v1" });
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,8 +52,8 @@ namespace WebSchoolAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebSchoolAPI v1"));
+                //app.UseSwagger();
+                //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebSchoolAPI v1"));
             }
 
             app.UseHttpsRedirection();
