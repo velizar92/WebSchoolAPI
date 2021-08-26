@@ -17,7 +17,6 @@ namespace WebSchoolAPI.Repositories.CourseRepository
             _context = context;
         }
 
-
         public async Task<Course> Create(Course course)
         {
             _context.Courses.Add(course);
@@ -40,7 +39,11 @@ namespace WebSchoolAPI.Repositories.CourseRepository
 
         public async Task<Course> Get(int id)
         {
-            return await _context.Courses.FindAsync(id);
+            return await _context.Courses
+                .Include(s => s.Students)
+                .Include(s => s.Teachers)
+                .Include(s => s.Universities)
+                .FirstOrDefaultAsync(s => s.Id == id);
         }
 
         public async Task Update(Course course)

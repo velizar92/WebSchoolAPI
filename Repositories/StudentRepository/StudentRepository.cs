@@ -34,7 +34,7 @@ namespace WebSchoolAPI.Repositories.StudentRepository
 
         public async Task<IEnumerable<Student>> GetAll()
         {
-            return await _context.Students             
+            return await _context.Students                       
                 .ToListAsync();
    
         }
@@ -42,7 +42,8 @@ namespace WebSchoolAPI.Repositories.StudentRepository
         public async Task<Student> Get(int id)
         {
             return await _context.Students
-                .Include(s => s.Courses)    
+                .Include(s => s.Courses) 
+                .Include(s => s.Teachers)
                 .Include(s => s.University)
                 .FirstOrDefaultAsync(s => s.Id == id);
         }
