@@ -34,16 +34,12 @@ namespace WebSchoolAPI
             services.AddScoped<ITeacherRepository, TeacherRepository>();
             services.AddScoped<IUniversityRepository, UniversityRepository>();
 
-            //services.AddDbContext<SchoolDbContext>(o =>
-            //o.UseSqlServer("Server=DESKTOP-JITMAHC;Database=WebSchoolAPI;Integrated Security=true;"));
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddDbContext<SchoolDbContext>(o =>
             o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            //services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebSchoolAPI", Version = "v1" });
-            //});
+         
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,8 +48,7 @@ namespace WebSchoolAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                //app.UseSwagger();
-                //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebSchoolAPI v1"));
+                
             }
 
             app.UseHttpsRedirection();

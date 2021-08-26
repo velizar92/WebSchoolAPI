@@ -34,12 +34,17 @@ namespace WebSchoolAPI.Repositories.StudentRepository
 
         public async Task<IEnumerable<Student>> GetAll()
         {
-            return await _context.Students.ToListAsync();
+            return await _context.Students             
+                .ToListAsync();
+   
         }
 
         public async Task<Student> Get(int id)
         {
-            return await _context.Students.FindAsync(id);
+            return await _context.Students
+                .Include(s => s.Courses)    
+                .Include(s => s.University)
+                .FirstOrDefaultAsync(s => s.Id == id);
         }
 
         public async Task Update(Student student)

@@ -12,6 +12,7 @@ namespace WebSchoolAPI.Models
         public long EGN { get; set; }
         public long StudentNumber { get; set; }
 
+
         //Navigational properties:
 
         public University University { get; set; }
