@@ -16,7 +16,6 @@ namespace WebSchoolAPI.Repositories.StudentRepository
             _context = context;
         }
 
-
         public async Task<Student> Create(Student student)
         {
             _context.Students.Add(student);

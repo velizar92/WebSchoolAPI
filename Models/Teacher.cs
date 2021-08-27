@@ -17,5 +17,10 @@ namespace WebSchoolAPI.Models
         public ICollection<Course> Courses { get; set; }
         public ICollection<Student> Students { get; set; }
 
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName}";
+        }
+
     }
 }

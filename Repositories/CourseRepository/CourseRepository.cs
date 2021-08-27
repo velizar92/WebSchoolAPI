@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebSchoolAPI.DTO;
 using WebSchoolAPI.Models;
 
 namespace WebSchoolAPI.Repositories.CourseRepository
@@ -32,14 +33,35 @@ namespace WebSchoolAPI.Repositories.CourseRepository
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Course>> GetAll()
+        public async Task<IEnumerable<CourseDto>> GetAll()
         {
-            return await _context.Courses.ToListAsync();
+            return await _context.Courses
+                .Select(s => new CourseDto()
+                {
+                    Id = s.Id,
+                    Name = s.Name,                  
+                    CourseNumber = s.CourseNumber,
+                    Description = s.Description,
+                    Students = string.Join(", ", s.Students),
+                    Universities = string.Join(", ", s.Universities),
+                    Teachers = string.Join(", ", s.Teachers)
+                })
+                .ToListAsync();
         }
 
-        public async Task<Course> Get(int id)
+        public async Task<CourseDto> Get(int id)
         {
-            return await _context.Courses               
+            return await _context.Courses
+                .Select(s => new CourseDto()
+                {
+                    Id = s.Id,
+                    Name = s.Name,
+                    CourseNumber = s.CourseNumber,
+                    Description = s.Description,
+                    Students = string.Join(", ", s.Students),
+                    Universities = string.Join(", ", s.Universities),
+                    Teachers = string.Join(", ", s.Teachers)
+                })
                 .FirstOrDefaultAsync(s => s.Id == id);
         }
 

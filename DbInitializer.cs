@@ -10,7 +10,7 @@ namespace WebSchoolAPI
     {
         public static void Initialize(SchoolDbContext context)
         {
-           
+
             if (context.Students.Any())
             {
                 return;
@@ -19,21 +19,7 @@ namespace WebSchoolAPI
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
-            //----------------------------------------------COURSES TEST DATA-------------------------------------------
 
-            var cSharpFundamentals = new Course { Name = "C# Programming Fundamentals", Description = "Programming in C#" };
-            var javaFundamentals = new Course { Name = "Java Programming Fundamentals", Description = "Programming in Java" };
-            var jsFundamentals = new Course { Name = "JS Programming Fundamentals", Description = "Programming in JS" };
-            var phpFundamentals = new Course { Name = "PHP Programming Fundamentals", Description = "Programming in PHP" };
-            var pythonFundamentals = new Course { Name = "Python Programming Fundamentals", Description = "Programming in Python" };
-            var kotlinFundamentals = new Course { Name = "Kotlin Programming Fundamentals", Description = "Programming in Kotlin" };
-
-            var courses = new Course[] { cSharpFundamentals, javaFundamentals, jsFundamentals, phpFundamentals, pythonFundamentals, kotlinFundamentals };
-
-            foreach (var course in courses)
-            {
-                context.Courses.Add(course);
-            }
 
             //----------------------------------------------UNIVERSITIES/ACADEMIES/ TEST DATA-------------------------------------------
 
@@ -49,49 +35,109 @@ namespace WebSchoolAPI
             }
 
 
+            //----------------------------------------------COURSES TEST DATA-------------------------------------------
 
+            var cSharpFundamentals = new Course {
+                Name = "C# Programming Fundamentals",
+                Description = "Programming in C#",
+                CourseNumber = 110,
+                Universities = new List<University> { softUniAcademy, softAcademy, telericAcademy },
+            };
+
+            var javaFundamentals = new Course {
+                Name = "Java Programming Fundamentals",
+                Description = "Programming in Java",
+                CourseNumber = 111,
+                Universities = new List<University> { softUniAcademy, softAcademy, telericAcademy },
+            };
+
+            var jsFundamentals = new Course {
+                Name = "JS Programming Fundamentals",
+                Description = "Programming in JS",
+                CourseNumber = 112,
+                Universities = new List<University> { softUniAcademy, softAcademy, telericAcademy },
+            };
+
+            var phpFundamentals = new Course {
+                Name = "PHP Programming Fundamentals",
+                Description = "Programming in PHP",
+                CourseNumber = 113,
+                Universities = new List<University> { softUniAcademy, softAcademy, telericAcademy },
+            };
+
+            var pythonFundamentals = new Course {
+                Name = "Python Programming Fundamentals",
+                Description = "Programming in Python",
+                CourseNumber = 114,
+                Universities = new List<University> { softUniAcademy, softAcademy, telericAcademy },
+            };
+
+            var kotlinFundamentals = new Course {
+                Name = "Kotlin Programming Fundamentals",
+                Description = "Programming in Kotlin",
+                CourseNumber = 115,
+                Universities = new List<University> { softUniAcademy, softAcademy, telericAcademy },
+            };
+
+            var courses = new Course[] { cSharpFundamentals, javaFundamentals, jsFundamentals, phpFundamentals, pythonFundamentals, kotlinFundamentals };
+
+            foreach (var course in courses)
+            {
+                context.Courses.Add(course);
+            }
+
+           
             //-----------------------------------------------------TEACHERS TEST DATA---------------------------------------------------
 
             var teacherOne = new Teacher
-                {
-                    FirstName = "Petko",
-                    LastName = "Dimitrov",                  
-                    Address = "Bulgaria, V. Turnovo, Petko Karavelov str. 10",
-                    EGN = 6511199876,
-                };
+            {
+                FirstName = "Petko",
+                LastName = "Dimitrov",
+                Address = "Bulgaria, V. Turnovo, Petko Karavelov str. 10",
+                EGN = 6511199876,
+                University = softUniAcademy,
+                Courses = new List<Course> { cSharpFundamentals, javaFundamentals }
+            };
 
             var teacherTwo = new Teacher
-                {
-                    FirstName = "Penka",
-                    LastName = "Stoilova",
-                    Address = "Bulgaria, Varna, Pancho Vladigerov str. 8",
-                    EGN = 5811199876
-                };
+            {
+                FirstName = "Penka",
+                LastName = "Stoilova",
+                Address = "Bulgaria, Varna, Pancho Vladigerov str. 8",
+                EGN = 5811199876,
+                University = softAcademy,
+                Courses = new List<Course> { jsFundamentals }
+            };
 
             var teacherThree = new Teacher
-                {
-                    FirstName = "Dimcho",
-                    LastName = "Petkanov",
-                    Address = "Bulgaria, Meden Rudnik, Maria Luiza str. 2",
-                    EGN = 4511239876
-                };
+            {
+                FirstName = "Dimcho",
+                LastName = "Petkanov",
+                Address = "Bulgaria, Meden Rudnik, Maria Luiza str. 2",
+                EGN = 4511239876,
+                University = telericAcademy,
+                Courses = new List<Course> { phpFundamentals, pythonFundamentals }
+            };
 
             var teacherFour = new Teacher
-                {
-                    FirstName = "Evstati",
-                    LastName = "Cherkezov",
-                    Address = "Bulgaria, Sofia, Georgi Rakovski str. 16",
-                    EGN = 5111199876
-                };
+            {
+                FirstName = "Evstati",
+                LastName = "Cherkezov",
+                Address = "Bulgaria, Sofia, Georgi Rakovski str. 16",
+                EGN = 5111199876,
+                University = telericAcademy,
+                Courses = new List<Course> { cSharpFundamentals, pythonFundamentals }
+            };
 
-            var teacherFive =
-                new Teacher
-                {
-                    FirstName = "Anastasia",
-                    LastName = "Hvoinova",
-                    Address = "Bulgaria, Pernik, Dimcho Debelyianov str. 10",
-                    EGN = 7613199876
-                };
+            var teacherFive = new Teacher
+            {
+                FirstName = "Anastasia",
+                LastName = "Hvoinova",
+                Address = "Bulgaria, Pernik, Dimcho Debelyianov str. 10",
+                EGN = 7613199876,
+                University = softUniAcademy,
+                Courses = new List<Course> { kotlinFundamentals }
+            };
 
             var teachers = new Teacher[] { teacherOne, teacherTwo, teacherThree, teacherFour, teacherFive };
 
@@ -168,7 +214,7 @@ namespace WebSchoolAPI
                 context.Students.Add(student);
             }
 
-        
+
             context.SaveChanges();
 
         }
