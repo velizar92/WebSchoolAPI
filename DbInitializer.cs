@@ -10,14 +10,14 @@ namespace WebSchoolAPI
     {
         public static void Initialize(SchoolDbContext context)
         {
-            context.Database.EnsureDeleted();
-            context.Database.EnsureCreated();
-
-
+           
             if (context.Students.Any())
             {
                 return;
             }
+
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
 
             //----------------------------------------------COURSES TEST DATA-------------------------------------------
 
@@ -55,17 +55,15 @@ namespace WebSchoolAPI
             var teacherOne = new Teacher
                 {
                     FirstName = "Petko",
-                    LastName = "Dimitrov",
-                    Age = 56,
+                    LastName = "Dimitrov",                  
                     Address = "Bulgaria, V. Turnovo, Petko Karavelov str. 10",
-                    EGN = 6511199876
+                    EGN = 6511199876,
                 };
 
             var teacherTwo = new Teacher
                 {
                     FirstName = "Penka",
                     LastName = "Stoilova",
-                    Age = 63,
                     Address = "Bulgaria, Varna, Pancho Vladigerov str. 8",
                     EGN = 5811199876
                 };
@@ -74,7 +72,6 @@ namespace WebSchoolAPI
                 {
                     FirstName = "Dimcho",
                     LastName = "Petkanov",
-                    Age = 76,
                     Address = "Bulgaria, Meden Rudnik, Maria Luiza str. 2",
                     EGN = 4511239876
                 };
@@ -83,7 +80,6 @@ namespace WebSchoolAPI
                 {
                     FirstName = "Evstati",
                     LastName = "Cherkezov",
-                    Age = 70,
                     Address = "Bulgaria, Sofia, Georgi Rakovski str. 16",
                     EGN = 5111199876
                 };
@@ -93,7 +89,6 @@ namespace WebSchoolAPI
                 {
                     FirstName = "Anastasia",
                     LastName = "Hvoinova",
-                    Age = 45,
                     Address = "Bulgaria, Pernik, Dimcho Debelyianov str. 10",
                     EGN = 7613199876
                 };
@@ -112,9 +107,9 @@ namespace WebSchoolAPI
                 new Student {
                     FirstName = "Velizar",
                     LastName = "Georgiev",
-                    Age = 30,
                     Address = "Bulgaria, Sofia, Petko Karavelov str. 3",
                     EGN = 9102121783,
+                    StudentNumber = 113623,
                     Courses = new List<Course> { cSharpFundamentals, kotlinFundamentals },
                     University = softUniAcademy,
                     Teachers = new List<Teacher> {teacherOne, teacherFour}
@@ -123,9 +118,9 @@ namespace WebSchoolAPI
                 new Student {
                     FirstName = "Georgi",
                     LastName = "Boikov",
-                    Age = 23,
                     Address = "Bulgaria, Pleven, Vasil Levski str. 8",
                     EGN = 9812121800,
+                    StudentNumber = 113777,
                     Courses = new List<Course> { javaFundamentals },
                     University = softUniAcademy,
                     Teachers = new List<Teacher> {teacherThree}
@@ -134,9 +129,9 @@ namespace WebSchoolAPI
                 new Student {
                     FirstName = "Maria",
                     LastName = "Petkova",
-                    Age = 21,
                     Address = "Bulgaria, Pernik, Angel Kanchev str. 6",
                     EGN = 0102126719,
+                    StudentNumber = 114626,
                     Courses = new List<Course> { pythonFundamentals },
                     University = softAcademy,
                     Teachers = new List<Teacher> {teacherOne}
@@ -146,9 +141,9 @@ namespace WebSchoolAPI
                 {
                     FirstName = "Dimitar",
                     LastName = "Elenkov",
-                    Age = 37,
                     Address = "Bulgaria, Sofia, Vasil Kaunchov str. 9",
                     EGN = 8407291783,
+                      StudentNumber = 114632,
                     Courses = new List<Course> { cSharpFundamentals, phpFundamentals },
                     University = telericAcademy,
                     Teachers = new List<Teacher> {teacherFour, teacherTwo}
@@ -158,9 +153,9 @@ namespace WebSchoolAPI
                 {
                     FirstName = "Bojana",
                     LastName = "Dvorqnova",
-                    Age = 35,
                     Address = "Bulgaria, Burgas, Kiril i Metodii str. 2",
                     EGN = 8608176588,
+                    StudentNumber = 120900,
                     Courses = new List<Course> { jsFundamentals },
                     University = telericAcademy,
                     Teachers = new List<Teacher> {teacherFour, teacherFive}
@@ -173,8 +168,7 @@ namespace WebSchoolAPI
                 context.Students.Add(student);
             }
 
-         
-
+        
             context.SaveChanges();
 
         }

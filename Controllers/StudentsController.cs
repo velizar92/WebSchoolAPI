@@ -23,13 +23,13 @@ namespace WebSchoolAPI.Controllers
 
         [HttpGet]
         [Route("all")]
-        public async Task<IEnumerable<Student>> GetStudents()
+        public async Task<IEnumerable<StudentDto>> GetStudents()
         {
             return await _studentRepository.GetAll();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Student>> GetStudent(int id)
+        public async Task<ActionResult<StudentDto>> GetStudent(int id)
         {
             return await _studentRepository.Get(id);
         }

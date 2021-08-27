@@ -39,10 +39,7 @@ namespace WebSchoolAPI.Repositories.UniversityRepository
 
         public async Task<University> Get(int id)
         {
-            return await _context.Universities
-                .Include(s => s.Students)
-                .Include(s => s.Courses)
-                .Include(s => s.Teachers)    
+            return await _context.Universities               
                 .FirstOrDefaultAsync(s => s.Id == id);
         }
 

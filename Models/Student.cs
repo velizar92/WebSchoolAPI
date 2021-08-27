@@ -7,7 +7,6 @@ namespace WebSchoolAPI.Models
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int Age { get; set; }
         public string Address { get; set; }
         public long EGN { get; set; }
         public long StudentNumber { get; set; }
@@ -18,7 +17,9 @@ namespace WebSchoolAPI.Models
         public University University { get; set; }
         public ICollection<Course> Courses { get; set; }
         public ICollection<Teacher> Teachers { get; set; }
-      
+
+        
+
 
     }
 }

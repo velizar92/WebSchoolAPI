@@ -32,26 +32,50 @@ namespace WebSchoolAPI.Repositories.StudentRepository
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Student>> GetAll()
-        {
-            return await _context.Students                       
-                .ToListAsync();
-   
-        }
-
-        public async Task<Student> Get(int id)
+        public async Task<IEnumerable<StudentDto>> GetAll()
         {
             return await _context.Students
-                .Include(s => s.Courses) 
-                .Include(s => s.Teachers)
-                .Include(s => s.University)
+                .Select(s => new StudentDto()
+                {
+
+                    Id = s.Id,
+                    FirstName = s.FirstName,
+                    LastName = s.LastName,
+                    Address = s.Address,
+                    EGN = s.EGN,
+                    StudentNumber = s.StudentNumber,
+                    CourseNames = string.Join(", ", s.Courses),
+                    Univeristy = s.University.Name
+                })
+                .ToListAsync(); 
+        }
+
+        public async Task<StudentDto> Get(int id)
+        {
+            return await _context.Students
+                 .Select(s => new StudentDto()
+                 {
+                     Id = s.Id,
+                     FirstName = s.FirstName,
+                     LastName = s.LastName,
+                     Address = s.Address,
+                     EGN = s.EGN,
+                     StudentNumber = s.StudentNumber,
+                     CourseNames = string.Join(", ", s.Courses),
+                     Univeristy = s.University.Name
+                 })
                 .FirstOrDefaultAsync(s => s.Id == id);
         }
+
 
         public async Task Update(Student student)
         {
             _context.Entry(student).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
+
+
+
+    
     }
 }
