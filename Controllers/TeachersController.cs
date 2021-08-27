@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebSchoolAPI.DTO;
 using WebSchoolAPI.Models;
 using WebSchoolAPI.Repositories;
 
@@ -23,13 +24,13 @@ namespace WebSchoolAPI.Controllers
 
         [HttpGet]
         [Route("all")]
-        public async Task<IEnumerable<Teacher>> GetTeachers()
+        public async Task<IEnumerable<TeacherDto>> GetTeachers()
         {
             return await _teacherRepository.GetAll();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Teacher>> GetTeacher(int id)
+        public async Task<ActionResult<TeacherDto>> GetTeacher(int id)
         {
             return await _teacherRepository.Get(id);
         }

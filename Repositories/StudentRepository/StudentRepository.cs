@@ -36,7 +36,6 @@ namespace WebSchoolAPI.Repositories.StudentRepository
             return await _context.Students
                 .Select(s => new StudentDto()
                 {
-
                     Id = s.Id,
                     FirstName = s.FirstName,
                     LastName = s.LastName,
