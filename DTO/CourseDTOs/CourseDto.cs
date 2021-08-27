@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebSchoolAPI.DTO.StudentsDTOs;
+using WebSchoolAPI.Models;
 
 namespace WebSchoolAPI.DTO
 {
@@ -13,8 +15,8 @@ namespace WebSchoolAPI.DTO
         public long CourseNumber { get; set; }
 
 
-        public string Students { get; set; }
-        public string Universities { get; set; }
-        public string Teachers { get; set; }
+        public ICollection<StudentNameDto> Students { get; set; }
+        public ICollection<string> Universities { get; set; }
+        public ICollection<TeacherNameDto> Teachers { get; set; }
     }
 }

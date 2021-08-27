@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebSchoolAPI.DTO;
+using WebSchoolAPI.DTO.StudentsDTOs;
 using WebSchoolAPI.Models;
 
 namespace WebSchoolAPI.Repositories.CourseRepository
@@ -33,37 +34,60 @@ namespace WebSchoolAPI.Repositories.CourseRepository
             await _context.SaveChangesAsync();
         }
 
+
         public async Task<IEnumerable<CourseDto>> GetAll()
         {
             return await _context.Courses
-                .Select(s => new CourseDto()
+                .Select(c => new CourseDto()
                 {
-                    Id = s.Id,
-                    Name = s.Name,                  
-                    CourseNumber = s.CourseNumber,
-                    Description = s.Description,
-                    Students = string.Join(", ", s.Students),
-                    Universities = string.Join(", ", s.Universities),
-                    Teachers = string.Join(", ", s.Teachers)
+                    Id = c.Id,
+                    Name = c.Name,
+                    CourseNumber = c.CourseNumber,
+                    Description = c.Description,
+
+                    Students = c.Students.Select(s => new StudentNameDto()
+                    {
+                        FirstName = s.FirstName,
+                        LastName = s.LastName
+                    }).ToList(),
+
+                    Universities = c.Universities.Select(u => u.Name).ToList(),
+                    Teachers = c.Teachers.Select(t => new TeacherNameDto()
+                    {
+                        FirstName = t.FirstName,
+                        LastName = t.LastName
+                    }).ToList()
                 })
                 .ToListAsync();
         }
 
+
         public async Task<CourseDto> Get(int id)
         {
             return await _context.Courses
-                .Select(s => new CourseDto()
-                {
-                    Id = s.Id,
-                    Name = s.Name,
-                    CourseNumber = s.CourseNumber,
-                    Description = s.Description,
-                    Students = string.Join(", ", s.Students),
-                    Universities = string.Join(", ", s.Universities),
-                    Teachers = string.Join(", ", s.Teachers)
-                })
+               .Select(c => new CourseDto()
+               {
+                   Id = c.Id,
+                   Name = c.Name,
+                   CourseNumber = c.CourseNumber,
+                   Description = c.Description,
+
+                   Students = c.Students.Select(s => new StudentNameDto()
+                   {
+                       FirstName = s.FirstName,
+                       LastName = s.LastName
+                   }).ToList(),
+
+                   Universities = c.Universities.Select(u => u.Name).ToList(),
+                   Teachers = c.Teachers.Select(t => new TeacherNameDto()
+                   {
+                       FirstName = t.FirstName,
+                       LastName = t.LastName
+                   }).ToList()
+               })
                 .FirstOrDefaultAsync(s => s.Id == id);
         }
+
 
         public async Task Update(Course course)
         {

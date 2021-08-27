@@ -41,11 +41,11 @@ namespace WebSchoolAPI.Repositories.StudentRepository
                     LastName = s.LastName,
                     Address = s.Address,
                     EGN = s.EGN,
-                    StudentNumber = s.StudentNumber,
-                    CourseNames = string.Join(", ", s.Courses),
+                    StudentNumber = s.StudentNumber,                 
+                    CourseNames = s.Courses.Select(c => c.Name).ToList(),
                     Univeristy = s.University.Name
                 })
-                .ToListAsync(); 
+                .ToListAsync();
         }
 
         public async Task<StudentDto> Get(int id)
@@ -58,8 +58,8 @@ namespace WebSchoolAPI.Repositories.StudentRepository
                      LastName = s.LastName,
                      Address = s.Address,
                      EGN = s.EGN,
-                     StudentNumber = s.StudentNumber,
-                     CourseNames = string.Join(", ", s.Courses),
+                     StudentNumber = s.StudentNumber,                    
+                     CourseNames = s.Courses.Select(c => c.Name).ToList(),
                      Univeristy = s.University.Name
                  })
                 .FirstOrDefaultAsync(s => s.Id == id);
@@ -74,6 +74,6 @@ namespace WebSchoolAPI.Repositories.StudentRepository
 
 
 
-    
+
     }
 }

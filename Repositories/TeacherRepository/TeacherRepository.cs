@@ -44,7 +44,7 @@ namespace WebSchoolAPI.Repositories.TeacherRepository
                     LastName = s.LastName,
                     Address = s.Address,
                     EGN = s.EGN,                  
-                    CourseNames = string.Join(", ", s.Courses),
+                    CourseNames = s.Courses.Select(c => c.Name).ToList(),
                     University = s.University.Name
                 })
                 .ToListAsync();
@@ -60,11 +60,12 @@ namespace WebSchoolAPI.Repositories.TeacherRepository
                      LastName = s.LastName,
                      Address = s.Address,
                      EGN = s.EGN,
-                     CourseNames = string.Join(", ", s.Courses),
+                     CourseNames = s.Courses.Select(c => c.Name).ToList(),
                      University = s.University.Name
                  })
                 .FirstOrDefaultAsync(s => s.Id == id);
         }
+
 
         public async Task Update(Teacher teacher)
         {

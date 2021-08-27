@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebSchoolAPI.DTO;
+using WebSchoolAPI.DTO.StudentsDTOs;
 using WebSchoolAPI.Models;
 
 namespace WebSchoolAPI.Repositories.UniversityRepository
@@ -36,15 +37,25 @@ namespace WebSchoolAPI.Repositories.UniversityRepository
         public async Task<IEnumerable<UniversityDto>> GetAll()
         {
             return await _context.Universities
-                .Select(s => new UniversityDto()
+                .Select(u => new UniversityDto()
                 {
-                    Id = s.Id,
-                    Name = s.Name,
-                    Description = s.Description,
-                    Capacity = s.Capacity,
-                    Courses = string.Join(", ", s.Courses),
-                    Students = string.Join(", ", s.Students),
-                    Teachers = string.Join(", ", s.Teachers)
+                    Id = u.Id,
+                    Name = u.Name,
+                    Description = u.Description,
+                    Capacity = u.Capacity,
+                    Courses = u.Courses.Select(c => c.Name).ToList(),
+
+                    Students = u.Students.Select(s => new StudentNameDto()
+                    {
+                        FirstName = s.FirstName,
+                        LastName = s.LastName
+                    }).ToList(),
+
+                    Teachers = u.Teachers.Select(t => new TeacherNameDto()
+                    {
+                        FirstName = t.FirstName,
+                        LastName = t.LastName
+                    }).ToList()
                 })
                 .ToListAsync();
         }
@@ -52,15 +63,25 @@ namespace WebSchoolAPI.Repositories.UniversityRepository
         public async Task<UniversityDto> Get(int id)
         {
             return await _context.Universities
-                  .Select(s => new UniversityDto()
+                  .Select(u => new UniversityDto()
                   {
-                      Id = s.Id,
-                      Name = s.Name,
-                      Description = s.Description,
-                      Capacity = s.Capacity,
-                      Courses = string.Join(", ", s.Courses),
-                      Students = string.Join(", ", s.Students),
-                      Teachers = string.Join(", ", s.Teachers)
+                      Id = u.Id,
+                      Name = u.Name,
+                      Description = u.Description,
+                      Capacity = u.Capacity,
+                      Courses = u.Courses.Select(c => c.Name).ToList(),
+
+                      Students = u.Students.Select(s => new StudentNameDto()
+                      {
+                          FirstName = s.FirstName,
+                          LastName = s.LastName
+                      }).ToList(),
+
+                      Teachers = u.Teachers.Select(t => new TeacherNameDto()
+                      {
+                          FirstName = t.FirstName,
+                          LastName = t.LastName
+                      }).ToList()
                   })
                 .FirstOrDefaultAsync(s => s.Id == id);
         }

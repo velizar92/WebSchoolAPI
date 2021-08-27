@@ -19,10 +19,7 @@ namespace WebSchoolAPI.Models
         public ICollection<Teacher> Teachers { get; set; }
 
 
-        public override string ToString()
-        {
-            return $"{FirstName} {LastName}";
-        }
+       
 
 
     }
