@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +13,12 @@ namespace WebSchoolAPI.Repositories.TeacherRepository
     public class TeacherRepository : ITeacherRepository
     {
         private readonly SchoolDbContext _context;
+        private readonly IMapper _mapper;
 
-        public TeacherRepository(SchoolDbContext context)
+        public TeacherRepository(SchoolDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
 
@@ -36,33 +40,14 @@ namespace WebSchoolAPI.Repositories.TeacherRepository
         public async Task<IEnumerable<TeacherDto>> GetAll()
         {
             return await _context.Teachers
-                .Select(s => new TeacherDto()
-                {
-
-                    Id = s.Id,
-                    FirstName = s.FirstName,
-                    LastName = s.LastName,
-                    Address = s.Address,
-                    EGN = s.EGN,                  
-                    CourseNames = s.Courses.Select(c => c.Name).ToList(),
-                    University = s.University.Name
-                })
+                .ProjectTo<TeacherDto>(_mapper.ConfigurationProvider)
                 .ToListAsync();
         }
 
         public async Task<TeacherDto> Get(int id)
         {
             return await _context.Teachers
-                 .Select(s => new TeacherDto()
-                 {
-                     Id = s.Id,
-                     FirstName = s.FirstName,
-                     LastName = s.LastName,
-                     Address = s.Address,
-                     EGN = s.EGN,
-                     CourseNames = s.Courses.Select(c => c.Name).ToList(),
-                     University = s.University.Name
-                 })
+                .ProjectTo<TeacherDto>(_mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync(s => s.Id == id);
         }
 

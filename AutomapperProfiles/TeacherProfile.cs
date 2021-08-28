@@ -13,6 +13,7 @@ namespace WebSchoolAPI.AutomapperProfiles
         public TeacherProfile()
         {
             CreateMap<Teacher, TeacherNameDto>();
+            CreateMap<Teacher, TeacherDto>();
         }
     }
 }
