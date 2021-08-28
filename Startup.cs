@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -5,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using WebSchoolAPI.AutomapperProfiles;
 using WebSchoolAPI.Models;
 using WebSchoolAPI.Repositories;
 using WebSchoolAPI.Repositories.CourseRepository;
@@ -28,6 +30,18 @@ namespace WebSchoolAPI
         {
 
             services.AddControllers();
+
+            // Auto Mapper Configurations
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new StudentProfile());
+                mc.AddProfile(new UniversityProfile());
+                mc.AddProfile(new CourseProfile());
+                mc.AddProfile(new TeacherProfile());
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<ICourseRepository, CourseRepository>();

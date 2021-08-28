@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebSchoolAPI.DTO.CourseDTOs;
 using WebSchoolAPI.DTO.StudentsDTOs;
 
 namespace WebSchoolAPI.DTO
@@ -14,7 +15,7 @@ namespace WebSchoolAPI.DTO
         public string Description { get; set; }
 
         public ICollection<StudentNameDto> Students { get; set; }
-        public ICollection<string> Courses { get; set; }
+        public ICollection<CourseNameDto> Courses { get; set; }
         public ICollection<TeacherNameDto> Teachers { get; set; }
     }
 }

@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebSchoolAPI.DTO.StudentsDTOs;
 using WebSchoolAPI.Models;
 
 namespace WebSchoolAPI
@@ -20,6 +22,7 @@ namespace WebSchoolAPI
             CreateDbIfNotExists(host);
 
             host.Run();
+         
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

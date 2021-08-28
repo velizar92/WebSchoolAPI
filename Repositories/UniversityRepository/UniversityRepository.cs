@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +14,13 @@ namespace WebSchoolAPI.Repositories.UniversityRepository
     public class UniversityRepository : IUniversityRepository
     {
         private readonly SchoolDbContext _context;
+        private readonly IMapper _mapper;
 
-        public UniversityRepository(SchoolDbContext context)
+
+        public UniversityRepository(SchoolDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
 
@@ -37,52 +42,15 @@ namespace WebSchoolAPI.Repositories.UniversityRepository
         public async Task<IEnumerable<UniversityDto>> GetAll()
         {
             return await _context.Universities
-                .Select(u => new UniversityDto()
-                {
-                    Id = u.Id,
-                    Name = u.Name,
-                    Description = u.Description,
-                    Capacity = u.Capacity,
-                    Courses = u.Courses.Select(c => c.Name).ToList(),
 
-                    Students = u.Students.Select(s => new StudentNameDto()
-                    {
-                        FirstName = s.FirstName,
-                        LastName = s.LastName
-                    }).ToList(),
-
-                    Teachers = u.Teachers.Select(t => new TeacherNameDto()
-                    {
-                        FirstName = t.FirstName,
-                        LastName = t.LastName
-                    }).ToList()
-                })
+                .ProjectTo<UniversityDto>(_mapper.ConfigurationProvider)
                 .ToListAsync();
         }
 
         public async Task<UniversityDto> Get(int id)
         {
             return await _context.Universities
-                  .Select(u => new UniversityDto()
-                  {
-                      Id = u.Id,
-                      Name = u.Name,
-                      Description = u.Description,
-                      Capacity = u.Capacity,
-                      Courses = u.Courses.Select(c => c.Name).ToList(),
-
-                      Students = u.Students.Select(s => new StudentNameDto()
-                      {
-                          FirstName = s.FirstName,
-                          LastName = s.LastName
-                      }).ToList(),
-
-                      Teachers = u.Teachers.Select(t => new TeacherNameDto()
-                      {
-                          FirstName = t.FirstName,
-                          LastName = t.LastName
-                      }).ToList()
-                  })
+                .ProjectTo<UniversityDto>(_mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync(s => s.Id == id);
         }
 
