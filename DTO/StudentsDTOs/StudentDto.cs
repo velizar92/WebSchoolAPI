@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebSchoolAPI.DTO;
+using WebSchoolAPI.DTO.CourseDTOs;
+using WebSchoolAPI.DTO.UniversityDTOs;
 using WebSchoolAPI.Models;
 
 namespace WebSchoolAPI
@@ -15,7 +18,7 @@ namespace WebSchoolAPI
         public long EGN { get; set; }
         public long StudentNumber { get; set; }
 
-        public string Univeristy { get; set; }
-        public IEnumerable<string> CourseNames { get; set; }
+        public UniversityNameDto University { get; set; }
+        public IEnumerable<CourseNameDto> Courses { get; set; }
     }
 }

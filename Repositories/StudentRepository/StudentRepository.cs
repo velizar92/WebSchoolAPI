@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +12,12 @@ namespace WebSchoolAPI.Repositories.StudentRepository
     public class StudentRepository : IStudentRepository
     {
         private readonly SchoolDbContext _context;
+        private readonly IMapper _mapper;
 
-        public StudentRepository(SchoolDbContext context)
+        public StudentRepository(SchoolDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public async Task<Student> Create(Student student)
@@ -34,34 +38,14 @@ namespace WebSchoolAPI.Repositories.StudentRepository
         public async Task<IEnumerable<StudentDto>> GetAll()
         {
             return await _context.Students
-                .Select(s => new StudentDto()
-                {
-                    Id = s.Id,
-                    FirstName = s.FirstName,
-                    LastName = s.LastName,
-                    Address = s.Address,
-                    EGN = s.EGN,
-                    StudentNumber = s.StudentNumber,                 
-                    CourseNames = s.Courses.Select(c => c.Name).ToList(),
-                    Univeristy = s.University.Name
-                })
+                .ProjectTo<StudentDto>(_mapper.ConfigurationProvider)
                 .ToListAsync();
         }
 
         public async Task<StudentDto> Get(int id)
         {
             return await _context.Students
-                 .Select(s => new StudentDto()
-                 {
-                     Id = s.Id,
-                     FirstName = s.FirstName,
-                     LastName = s.LastName,
-                     Address = s.Address,
-                     EGN = s.EGN,
-                     StudentNumber = s.StudentNumber,                    
-                     CourseNames = s.Courses.Select(c => c.Name).ToList(),
-                     Univeristy = s.University.Name
-                 })
+                .ProjectTo<StudentDto>(_mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync(s => s.Id == id);
         }
 
