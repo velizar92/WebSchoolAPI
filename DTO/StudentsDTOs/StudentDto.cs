@@ -17,6 +17,7 @@ namespace WebSchoolAPI
         public string Address { get; set; }
         public long EGN { get; set; }
         public long StudentNumber { get; set; }
+      
 
         public UniversityNameDto University { get; set; }
         public IEnumerable<CourseNameDto> Courses { get; set; }

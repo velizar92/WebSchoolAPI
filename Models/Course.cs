@@ -4,6 +4,14 @@ namespace WebSchoolAPI.Models
 {
     public class Course
     {
+
+        public Course()
+        {
+            this.Students = new HashSet<Student>();
+            this.Teachers = new HashSet<Teacher>();
+            this.Universities = new HashSet<University>();
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

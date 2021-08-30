@@ -4,6 +4,12 @@ namespace WebSchoolAPI.Models
 {
     public class Student
     {
+        public Student()
+        {
+            this.Courses = new HashSet<Course>();
+            this.Teachers = new HashSet<Teacher>();
+        }
+
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
