@@ -22,11 +22,18 @@ NОТЕ: The project is made like an exercise of all learned new things for a sp
 API Documentation:
 
   0. Registration/Login:
-     - Registration /user/
+
+    
+    - Registration /user/
+     
     https://localhost:{port-number}/api/authenticate/register
-     - Registration /user-admin/
+    
+    - Registration /user-admin/
+     
     https://localhost:{port-number}/api/authenticate/register-admin
-     - Login
+    
+    - Login
+     
     https://localhost:{port-number}/api/authenticate/login
    
 
