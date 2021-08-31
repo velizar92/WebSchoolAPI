@@ -32,9 +32,24 @@ API Documentation:
      
     https://localhost:{port-number}/api/authenticate/register-admin
     
+    Registration format: 
+    
+    {
+      "username": "peter123",
+      "email" : "peter@gmail.com",
+      "password": "Peter12345@"
+    }
+    
     - Login
      
     https://localhost:{port-number}/api/authenticate/login
+    
+    Login format:
+    
+    {
+      "username": "peter123",   
+      "password": "Peter12345@"
+    }
    
 
  1.REST Endpoints:
@@ -47,9 +62,19 @@ API Documentation:
     
     https://localhost:{port-number}/api/students/create                   -> create student
     
-    https://localhost:{port-number}/api/students/update                   -> update student
+    https://localhost:{port-number}/api/students/update/{id}                   -> update student
     
-    https://localhost:{port-number}/api/students/delete                   -> delete student  /only admin/
+    https://localhost:{port-number}/api/students/delete/{id}                   -> delete student  /only admin/
+    
+    Create student /format/:
+    
+    {
+      "firstname": "peter",
+      "lastname":  "petrov",
+      "address":  "Bulgaria, Sofia, Mladost 3",
+      "egn": 9610151808,
+      "studentNumber": 113790
+    }
     
   1.2 Courses
   
@@ -59,33 +84,58 @@ API Documentation:
     
     https://localhost:{port-number}/api/courses/create                    -> create course
     
-    https://localhost:{port-number}/api/courses/update                    -> update course
+    https://localhost:{port-number}/api/courses/update/{id}                    -> update course
     
-    https://localhost:{port-number}/api/courses/delete                    -> update course   /only admin/
+    https://localhost:{port-number}/api/courses/delete/{id}                    -> update course   /only admin/
+    
+    Create course /format/:    
+    
+      {
+        "name": "C# Programming Basics",
+        "description":  "It's about programming dude! ",
+        "courseNumber":  1133
+      }
     
   1.3 Teachers
   
-    https://localhost:{port-number}/api/teachers/all                      -> get all teachers
+    https://localhost:{port-number}/api/teachers/all                           -> get all teachers
     
-    https://localhost:{port-number}/api/teachers/{id}                     -> get teacher by id
+    https://localhost:{port-number}/api/teachers/{id}                          -> get teacher by id
     
-    https://localhost:{port-number}/api/teachers/create                   -> create teacher
+    https://localhost:{port-number}/api/teachers/create                        -> create teacher
     
-    https://localhost:{port-number}/api/teachers/update                   -> update teacher
+    https://localhost:{port-number}/api/teachers/update/{id}                   -> update teacher
     
-    https://localhost:{port-number}/api/teachers/delete                   -> delete teacher  /only admin/
+    https://localhost:{port-number}/api/teachers/delete/{id}                   -> delete teacher  /only admin/
+    
+    Create teacher /format/:
+    
+      {
+        "firstname": "mihail",
+        "lastname":  "dimitrov",
+        "address":  "Bulgaria, Sofia, Lyulin 6",
+        "egn": 9010151808,   
+      }
     
   1.4 Universities
   
-    https://localhost:{port-number}/api/universities/all                  -> get all universities
+    https://localhost:{port-number}/api/universities/all                       -> get all universities
     
-    https://localhost:{port-number}/api/universities/{id}                 -> get university by id
+    https://localhost:{port-number}/api/universities/{id}                      -> get university by id
     
-    https://localhost:{port-number}/api/universities/create               -> create university
+    https://localhost:{port-number}/api/universities/create                    -> create university
     
-    https://localhost:{port-number}/api/universities/update               -> update university
+    https://localhost:{port-number}/api/universities/update/{id}               -> update university
     
-    https://localhost:{port-number}/api/universities/delete               -> delete university /only admin/
+    https://localhost:{port-number}/api/universities/delete/{id}               -> delete university /only admin/
+    
+     Create university /format/:
+     
+      {
+        "name": "Kliment Ohridski",
+        "capacity":  "20000",
+        "description":  "Technical profile"
+      }
     
   Used Software:
   
