@@ -25,14 +25,14 @@ namespace WebSchoolAPI.Controllers
 
         [HttpGet]
         [Route("all")]
-        [Authorize(Roles = "User")]
+        [Authorize]
         public async Task<IEnumerable<UniversityDto>> GetUniversities()
         {
             return await _universityRepository.GetAll();
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = "User")]
+        [Authorize]
         public async Task<ActionResult<UniversityDto>> GetUniversity(int id)
         {
             return await _universityRepository.Get(id);
@@ -40,7 +40,7 @@ namespace WebSchoolAPI.Controllers
 
         [HttpPost]
         [Route("create")]
-        [Authorize(Roles = "User")]
+        [Authorize]
         public async Task<ActionResult<Course>> PostUniversity([FromBody] University university)
         {
             var newUniversity = await _universityRepository.Create(university);
@@ -49,7 +49,7 @@ namespace WebSchoolAPI.Controllers
 
         [HttpPut("{id}")]
         [Route("update/{id}")]
-        [Authorize(Roles = "User")]
+        [Authorize]
         public async Task<ActionResult> PutUniversity(int id, [FromBody] University university)
         {
             if (id != university.Id)
