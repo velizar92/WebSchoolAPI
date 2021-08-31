@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -24,12 +25,14 @@ namespace WebSchoolAPI.Controllers
 
         [HttpGet]
         [Route("all")]
+        [Authorize(Roles = "User")]
         public async Task<IEnumerable<TeacherDto>> GetTeachers()
         {
             return await _teacherRepository.GetAll();
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "User")]
         public async Task<ActionResult<TeacherDto>> GetTeacher(int id)
         {
             return await _teacherRepository.Get(id);
@@ -37,6 +40,7 @@ namespace WebSchoolAPI.Controllers
 
         [HttpPost]
         [Route("create")]
+        [Authorize(Roles = "User")]
         public async Task<ActionResult<Course>> PostTeacher([FromBody] Teacher teacher)
         {
             var newTeacher = await _teacherRepository.Create(teacher);
@@ -45,6 +49,7 @@ namespace WebSchoolAPI.Controllers
 
         [HttpPut("{id}")]
         [Route("update/{id}")]
+        [Authorize(Roles = "User")]
         public async Task<ActionResult> PutTeacher(int id, [FromBody] Teacher teacher)
         {
             if (id != teacher.Id)
@@ -60,6 +65,7 @@ namespace WebSchoolAPI.Controllers
 
         [HttpDelete("{id}")]
         [Route("delete/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> DeleteTeacher(int id)
         {
             var teacherToDelete = await _teacherRepository.Get(id);
