@@ -33,28 +33,51 @@ API Documentation:
  1.REST Endpoints:
  
   1.1 Students
+  
     https://localhost:{port-number}/api/students/all                      -> get all students
+    
     https://localhost:{port-number}/api/students/{id}                     -> get student by id
+    
     https://localhost:{port-number}/api/students/create                   -> create student
+    
     https://localhost:{port-number}/api/students/update                   -> update student
+    
     https://localhost:{port-number}/api/students/delete                   -> delete student  /only admin/
+    
   1.2 Courses
+  
     https://localhost:{port-number}/api/courses/all                       -> get all courses
+    
     https://localhost:{port-number}/api/courses/{id}                      -> get course by id
+    
     https://localhost:{port-number}/api/courses/create                    -> create course
+    
     https://localhost:{port-number}/api/courses/update                    -> update course
+    
     https://localhost:{port-number}/api/courses/delete                    -> update course   /only admin/
+    
   1.3 Teachers
+  
     https://localhost:{port-number}/api/teachers/all                      -> get all teachers
+    
     https://localhost:{port-number}/api/teachers/{id}                     -> get teacher by id
+    
     https://localhost:{port-number}/api/teachers/create                   -> create teacher
+    
     https://localhost:{port-number}/api/teachers/update                   -> update teacher
+    
     https://localhost:{port-number}/api/teachers/delete                   -> delete teacher  /only admin/
+    
   1.4 Universities
+  
     https://localhost:{port-number}/api/universities/all                  -> get all universities
+    
     https://localhost:{port-number}/api/universities/{id}                 -> get university by id
+    
     https://localhost:{port-number}/api/universities/create               -> create university
+    
     https://localhost:{port-number}/api/universities/update               -> update university
+    
     https://localhost:{port-number}/api/universities/delete               -> delete university /only admin/
     
   Used Software:
