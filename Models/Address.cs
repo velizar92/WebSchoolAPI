@@ -13,11 +13,10 @@ namespace WebSchoolAPI.Models
         public int ZipCode { get; set; }
         public string Street { get; set; }
         public string District { get; set; }
-        
-     
-        public Student Student { get; set; }    
-        public Teacher Teacher { get; set; }     
-        public University University { get; set; }
+
+
+        public int StudentId { get; set; }
+        public Student Student { get; set; }      
 
     }
 }

@@ -68,6 +68,7 @@ namespace WebSchoolAPI
                 mc.AddProfile(new UniversityProfile());
                 mc.AddProfile(new CourseProfile());
                 mc.AddProfile(new TeacherProfile());
+                mc.AddProfile(new AddressProfile());
             });
 
             IMapper mapper = mapperConfig.CreateMapper();

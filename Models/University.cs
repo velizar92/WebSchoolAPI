@@ -17,8 +17,9 @@ namespace WebSchoolAPI.Models
         public int Capacity { get; set; }
         public string Description { get; set; }
 
-        
+
         //Navigational properties:
+    
         public ICollection<Student> Students { get; set; }
         public ICollection<Course> Courses { get; set; }
         public ICollection<Teacher> Teachers { get; set; }
