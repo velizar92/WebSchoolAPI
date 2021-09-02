@@ -11,12 +11,12 @@ namespace WebSchoolAPI
         public static void Initialize(SchoolDbContext context)
         {
 
-            //if (context.Students.Any())
-            //{
-            //    return;
-            //}
+            if (context.Students.Any())
+            {
+                return;
+            }
 
-            //context.Database.EnsureDeleted();
+            context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
 
