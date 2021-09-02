@@ -50,7 +50,13 @@ API Documentation:
     {
       "firstname": "peter",
       "lastname":  "petrov",
-      "address":  "Bulgaria, Sofia, Mladost 3",
+      "address": {
+        "country": "Bulgaria",
+        "city": "Burgas",
+        "zipCode": 5666,
+        "street": "Kiril i Metodii str. 2",
+        "district": "Izgrev"
+      },
       "egn": 9610151808,
       "studentNumber": 113790
     }
@@ -91,8 +97,7 @@ API Documentation:
     
       {
         "firstname": "mihail",
-        "lastname":  "dimitrov",
-        "address":  "Bulgaria, Sofia, Lyulin 6",
+        "lastname":  "dimitrov",        
         "egn": 9010151808,   
       }
     
