@@ -8,7 +8,7 @@ In the project are implemented "One to Many", "Many to Many" and "One to One" re
 
 Included project characteristics:
 
-1. Models for: Student, University, Teacher and Course
+1. Models for: Student, University, Teacher, Course and Address
 2. Working with EF Core v.5 for creating of database from the particular models (from classes) -> Code First aproach
 3. Working with Repository layer. There are created repositories for every model, and these repositories are used in the controllers as a services that make the queries to the database.
 4. Working with DTOs (Data Transfer Objects)
