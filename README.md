@@ -1,3 +1,4 @@
+![DataModel](https://user-images.githubusercontent.com/40525254/132227872-8e4f08b7-95ba-408f-9be9-f7bfbadf769c.png)
 # WebSchoolAPI
 
 #Overview#:
