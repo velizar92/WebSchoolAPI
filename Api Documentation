@@ -29,6 +29,8 @@ API Documentation:
       "username": "peter123",   
       "password": "Peter12345@"
     }
+    
+    Note: After login we will receice a JWT token that we have to use when we want to access an authorized resources on the server.
    
 
  1.REST Endpoints:
