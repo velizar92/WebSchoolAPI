@@ -35,11 +35,11 @@ API Documentation:
  
   1.1 Students
   
-    https://localhost:{port-number}/api/students/all                      -> get all students
+    https://localhost:{port-number}/api/students/all                           -> get all students
     
-    https://localhost:{port-number}/api/students/{id}                     -> get student by id
+    https://localhost:{port-number}/api/students/{id}                          -> get student by id
     
-    https://localhost:{port-number}/api/students/create                   -> create student
+    https://localhost:{port-number}/api/students/create                        -> create student
     
     https://localhost:{port-number}/api/students/update/{id}                   -> update student
     
@@ -63,11 +63,11 @@ API Documentation:
     
   1.2 Courses
   
-    https://localhost:{port-number}/api/courses/all                       -> get all courses
+    https://localhost:{port-number}/api/courses/all                            -> get all courses
     
-    https://localhost:{port-number}/api/courses/{id}                      -> get course by id
+    https://localhost:{port-number}/api/courses/{id}                           -> get course by id
     
-    https://localhost:{port-number}/api/courses/create                    -> create course
+    https://localhost:{port-number}/api/courses/create                         -> create course
     
     https://localhost:{port-number}/api/courses/update/{id}                    -> update course
     
