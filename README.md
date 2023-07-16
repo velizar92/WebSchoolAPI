@@ -10,10 +10,10 @@ Included project characteristics:
 
 1. Models for: Student, University, Teacher, Course and Address
 2. Working with EF Core v.5 for creating of database from the particular models (from classes) -> Code First aproach
-3. Working with Repository layer. There are created repositories for every model, and these repositories are used in the controllers as a services that make the queries to the database.
+3. Working with Service layer. There are created services for every model, and these services are used in the controllers to make the queries to the database.
 4. Working with DTOs (Data Transfer Objects)
 5. Working with "Automapper" library for mapping of Model classes to DTOs
-6. CRUD operations in the controllers (used repository layer)
+6. CRUD operations in the controllers (used service layer)
 7. Possible tests of the API with Postman /see documentation below/
 8. Users configurations -> Register/Login (+ Registration of Admin user)
 9. Authentication is based on JWT token
